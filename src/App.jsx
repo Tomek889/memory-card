@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import Card from "./components/Card";
 import Scoreboard from "./components/Scoreboard";
+import WinModal from "./components/WinModal";
+import LoseModal from "./components/LoseModal";
 import { fetchPokemons } from "./utils/fetchPokemons";
 import { shuffle } from "./utils/shuffle";
 
@@ -14,6 +16,8 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
   const [chosenPokemons, setChosenPokemons] = useState([]);
   const [error, setError] = useState(null);
+  const [hasLost, setHasLost] = useState(false);
+  const [hasWon, setHasWon] = useState(false);
 
   useEffect(() => {
     const fetchPokemonsApp = async () => {
@@ -38,7 +42,7 @@ function App() {
 
   function handleClick(pokemon) {
     if (chosenPokemons.includes(pokemon)) {
-      setScore(0);
+      setHasLost(true);
       setChosenPokemons([]);
     } else {
       setChosenPokemons((prev) => [...prev, pokemon]);
@@ -53,17 +57,29 @@ function App() {
         setBestScore(score);
       }
       if (score === 12) {
-        // todo: win
+        setHasWon(true);
       }
     }
 
     setPokemons(shuffle([...pokemons]));
   }
 
+  function handleClickLose() {
+    setHasLost(false);
+    setScore(0);
+  }
+
+  function handleClickWin() {
+    setHasWon(false);
+  }
+
   return (
     <>
+      {hasWon && <WinModal onClick={handleClickWin} />}
+      {hasLost && <LoseModal score={score} onClick={handleClickLose} />}
+
       <Scoreboard score={score} bestScore={bestScore} />
-      <div className="pokemonGrid">
+      <div className={`pokemonGrid ${hasWon || hasLost ? "disabled" : ""}`}>
         {pokemons.map((pokemon) => (
           <Card
             pokemon={pokemon}
