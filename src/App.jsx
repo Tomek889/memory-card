@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 
 import Card from "./components/Card";
 import Scoreboard from "./components/Scoreboard";
+import { fetchPokemons } from "./utils/fetchPokemons";
 
-import './styles/card.css';
+import "./styles/card.css";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -11,33 +12,11 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
-    const pokemonNames = [
-      "Pikachu",
-      "Bulbasaur",
-      "Charmander",
-      "Squirtle",
-      "Jigglypuff",
-      "Meowth",
-      "Psyduck",
-      "Snorlax",
-      "Eevee",
-      "Gengar",
-      "Machop",
-      "Mewtwo",
-    ];
-
-    const fetchPokemons = async () => {
-      const results = await Promise.all(
-        pokemonNames.map((name) =>
-          fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`).then(
-            (res) => res.json()
-          )
-        )
-      );
+    const fetchPokemonsApp = async () => {
+      const results = await fetchPokemons();
       setPokemons(results);
     };
-
-    fetchPokemons();
+    fetchPokemonsApp();
   }, []);
 
   if (pokemons.length < 12) {
@@ -49,7 +28,7 @@ function App() {
       <Scoreboard score={score} bestScore={bestScore} />
       <div className="pokemonGrid">
         {pokemons.map((pokemon) => (
-          <Card pokemon={pokemon} key={pokemon.id}/>
+          <Card pokemon={pokemon} key={pokemon.id} />
         ))}
       </div>
     </>
