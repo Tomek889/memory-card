@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 
+import Card from "./components/Card";
 import Scoreboard from "./components/Scoreboard";
+
+import './styles/card.css';
 
 function App() {
   const [score, setScore] = useState(0);
@@ -46,10 +49,7 @@ function App() {
       <Scoreboard score={score} bestScore={bestScore} />
       <div className="pokemonGrid">
         {pokemons.map((pokemon) => (
-          <div key={pokemon.id}>
-            <p>{pokemon.name}</p>
-            <img src={pokemon.sprites.front_default} alt={pokemon} />
-          </div>
+          <Card pokemon={pokemon} key={pokemon.id}/>
         ))}
       </div>
     </>
