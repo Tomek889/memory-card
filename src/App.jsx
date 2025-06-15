@@ -33,7 +33,7 @@ function App() {
   }, []);
 
   if (error) {
-    return <p>{error}</p>;
+    return <h2 className="error">{error}</h2>;
   }
 
   if (pokemons.length < 12) {
@@ -48,7 +48,6 @@ function App() {
   function handleClick(pokemon) {
     if (chosenPokemons.includes(pokemon)) {
       setHasLost(true);
-      setChosenPokemons([]);
     } else {
       setChosenPokemons((prev) => [...prev, pokemon]);
       setScore((prevScore) => {
@@ -61,7 +60,7 @@ function App() {
       if (bestScore < score) {
         setBestScore(score);
       }
-      if (score === 12) {
+      if (score === 11) {
         setHasWon(true);
       }
     }
@@ -72,10 +71,13 @@ function App() {
   function handleClickLose() {
     setHasLost(false);
     setScore(0);
+    setChosenPokemons([]);
   }
 
   function handleClickWin() {
     setHasWon(false);
+    setScore(0);
+    setChosenPokemons([]);
   }
 
   return (
