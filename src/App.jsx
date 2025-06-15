@@ -5,7 +5,8 @@ import Scoreboard from "./components/Scoreboard";
 import { fetchPokemons } from "./utils/fetchPokemons";
 import { shuffle } from "./utils/shuffle";
 
-import "./styles/card.css";
+import "./styles/reset.css";
+import "./styles/styles.css";
 
 function App() {
   const [score, setScore] = useState(0);
