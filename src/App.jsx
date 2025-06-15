@@ -37,7 +37,12 @@ function App() {
   }
 
   if (pokemons.length < 12) {
-    return <p>Loading</p>;
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+        <p>Loading Pokémons...</p>
+      </div>
+    );
   }
 
   function handleClick(pokemon) {
@@ -78,6 +83,11 @@ function App() {
       {hasWon && <WinModal onClick={handleClickWin} />}
       {hasLost && <LoseModal score={score} onClick={handleClickLose} />}
 
+      <h1>Memory Card</h1>
+      <h2>
+        Get points by clicking on an image but don't click on any more than
+        once!
+      </h2>
       <Scoreboard score={score} bestScore={bestScore} />
       <div className={`pokemonGrid ${hasWon || hasLost ? "disabled" : ""}`}>
         {pokemons.map((pokemon) => (
