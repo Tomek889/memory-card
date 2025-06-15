@@ -1,18 +1,28 @@
 body {
-    background-color: #F2F2F2;
+  background-color: #f2f2f2;
 }
 
 .card {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  padding: 40px;
+  background-color: #3366cc;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .card p {
+  font-size: 2rem;
   position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #f2f2f2;
 }
 
 .disabled {
@@ -27,13 +37,13 @@ body {
   align-items: center;
   margin-top: 45vh;
   font-size: 1.2rem;
-  color: #3366CC;
+  color: #3366cc;
 }
 
 .spinner {
   width: 50px;
   height: 50px;
-  border: 6px solid #3366CC;
+  border: 6px solid #3366cc;
   border-top: 6px solid #ffffff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -46,11 +56,27 @@ body {
   }
 }
 
-h1, h2 {
-    color: #3366CC;
-    text-align: center;
+h1,
+h2 {
+  color: #3366cc;
+  text-align: center;
 }
 
 h1 {
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+.gridWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokemonGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  margin: 50px 40px;
 }

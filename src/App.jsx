@@ -89,14 +89,16 @@ function App() {
         once!
       </h2>
       <Scoreboard score={score} bestScore={bestScore} />
-      <div className={`pokemonGrid ${hasWon || hasLost ? "disabled" : ""}`}>
-        {pokemons.map((pokemon) => (
-          <Card
-            pokemon={pokemon}
-            key={pokemon.id}
-            onClick={() => handleClick(pokemon)}
-          />
-        ))}
+      <div className="gridWrapper">
+        <div className={`pokemonGrid ${hasWon || hasLost ? "disabled" : ""}`}>
+          {pokemons.map((pokemon) => (
+            <Card
+              pokemon={pokemon}
+              key={pokemon.id}
+              onClick={() => handleClick(pokemon)}
+            />
+          ))}
+        </div>
       </div>
     </>
   );
